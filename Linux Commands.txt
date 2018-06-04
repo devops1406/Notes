@@ -1,0 +1,325 @@
+########################################## Feb 21 ##########################################
+
+ssh - Connect to remote linux server
+    ssh -i <ssh-pem-key> -l <user-name> <IP-Address>
+    ssh -i devops -l chetu 35.200.243.24
+
+uname - Print certain system information
+    uname -a
+
+    OS Version - cat /etc/*release
+    OS Arch : uname -i
+        32 bit 
+        64 bit
+
+cat /proc/cpuinfo - Prints CPU information
+
+cat /proc/meminfo - Prints CPU information
+
+sudo fdisk -l  - Output Hard Disk information
+
+Users :
+    - Normal Users  $ Promt 
+    - Root Users (Admin)  # Promt
+
+Commands Syntax
+    command-name {options} {inputs}
+        Options:
+            -{single-char}
+            --{single-word}
+
+        Default Options: --help
+
+date - Display the Date & Time
+    TZ="Asia/Kolkata" date
+
+ls -  List information about the FILEs
+    ls -a       do not ignore entries starting with .
+    ls -al      use a long listing format
+    ls -t       sort by modification time, newest first 
+
+
+File Operations
+    Create File
+        touch       - Update the access and modification times of each FILE to the current time if file not present it will create file
+        touch filename
+    Remove File
+        rm          - Remove (unlink) the FILE(s)
+        rm filename
+    Rename File
+        mv          - Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY
+        mv filename new_filename
+    Copy File
+        cp          - Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY
+        cp filename filename
+
+Directory Operations
+    Create Directory
+        mkdir       - Create the DIRECTORY(ies), if they do not already exist
+        mkdir directory_name
+    Remove Directory
+        rm -d       -remove empty directories
+        rm -r       -remove directories and their contents recursively
+        rm -r directory_name
+    Copy Directory
+        cp -r       -copy directories recursively
+        cp dir1 dir2
+    Rename Directory
+        mv dir1 dir2
+
+########################################## Feb 22 23 24 26  ##########################################
+
+Linux Directory Structure
+    ROOT(/)
+        boot/
+        etc/
+        bin/
+        var/
+        tmp/
+        home/
+	
+ROOT(/) : The root directory is the directory on Unix-like operating systems that contains all other directories and files on the system and which is designated by a forward slash ( / ). Root directory typically include /bin, /boot, /dev, /etc, /home, /initrd, /lib, /lost+found, /misc, /mnt, /opt, /proc, /root, /sbin, /tmp, /usr and /var
+
+boot/ : This directory contains everything required for the boot process except for configuration files not needed at boot time and the map installer. Thus, the /boot directory stores data that is used before the kernel begins executing user-mode programs. This may include redundant (back-up) master boot records, sector/system map files, the kernel and other important boot files and data that is not directly edited by hand. Programs necessary to arrange for the boot loader to be able to boot a file are placed in /sbin. Configuration files for boot loaders are placed in /etc.
+
+/etc - Usually contain the configuration files for all the programs that run on your Linux/Unix system.
+
+/bin - Contains the executable (i.e., ready to run) programs that must be available in order to attain minimal functionality for the purposes of booting (i.e., starting) and repairing a system. Among the contents of /bin are the shells (e.g., bash and csh), ls, grep, tar, kill, echo, ps, cp, mv, rm, cat, gzip, ping, su and the vi text editor. These programs can be used by both the root user (i.e., the administrative user) and ordinary users.
+
+/var - Contains files to which the system writes data during the course of its operation. Contains variable data like system logging files, mail and printer spool directories, and transient and temporary files. Some portions of /var are not shareable between different systems. For instance, /var/log, /var/lock, and /var/run. Other portions may be shared, notably /var/mail, /var/cache/man, /var/cache/fonts, and /var/spool/news.
+
+
+Directory Operations
+    cd - Change Directory
+    pwd - present working directory
+
+    
+Editors
+    vi / vim - GNU vim
+        Esc Mode        - By default mode, ESC Key
+        Insert Mode     - Insert Key
+        Colon Mode      - Colon (:) Key
+            Search      
+                - :/string          To search word string
+                - :set ic           To remove case sensitive
+                - :set noic         To enable case sensitive
+            Replace     
+                - :/%s/string/str       To Replace string to str first entry only 
+                - :/%s/string/str/g     To Replace string to str in all entries of line
+                - :2s/string/str        To Replace string to str in line 2
+                - :1,5s/string/str      To Replace string to str from lines 1 to 5
+                - :/%s/string/str/i     To Replace string to str all cases
+                - :10,$s/string/str     To Replace string to str from line 10 to end line
+            Save
+                - :w                To Write file (Save File)
+                - :wq               To Write & Quit (Save & Quit)
+            Save Quit
+                - :q                To Quit works only after write
+                - :q!               Force Quit without write
+            Set Line Numbers
+                - :set nu   
+            Go to Line Number
+                - :Line_#           Go to line #
+                - :10               Go to line 10
+
+    Undo Operations
+        - u         Press ESC and press u
+    Paste Lines
+        - p         It will paste the line
+        - 10p       In ESC Mode 10p will paste 10 times
+    Copy Lines
+        - yy
+    Cut Lines       
+        - dd        In ESC Mode dd will cut the line
+    Cut Word
+        - dw        
+    Paste Lines
+        - pp 
+    Copy Word       Copy the word in cursure
+        - yw 
+    Paste Word
+        - p
+    Cut Word
+        - dw
+    New Line
+        - o         New Line & Insert Mode 
+    End of File
+        - G
+
+Utilities : wget, curl
+
+wget
+    -- sudo yum install wget -y             To insatll wget utilitie 
+    -- wget http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.5/bin/apache-tomcat-9.0.5.tar.gz   Download tar file
+    -- sha1sum apache-tomcat-9.0.5.tar.gz   Verify the archive
+    -- sha512sum apache-tomcat-9.0.5.tar.gz
+    -- md5sum apache-tomcat-9.0.5.tar.gz
+
+tar/zip Archives
+    tar.gz - Compression method Gunzip
+        tar xzf filename.tar.gz         Extraction Command
+            x   Extract
+            z   Gunzip 
+            f   File  
+
+    tar.bz2 - Compression method Buzip
+        sudo yum install bzip2 -y       Insatll Buzip
+        tar xf filename.tar.bz2         Extraction Command
+    
+    zip
+        sudo yum install unzip -y       Insatll Unzip
+        unzip filename.zip              Extraction Command
+
+curl - Command Line Browser
+    API Calls
+
+
+Filter Commands
+    cat             - Prints the contains of file
+        cat -n      - Prints with line Numbers
+    head            - Prints top 10 Lines
+        head -2     - Prints top 2 Lines
+    tail            - Prints bottom 10 Lines
+        tail -2     - Prints bottom 2 Lines
+        tail -f     - Monitor the log files
+
+Combining Commands
+    && -- ls && cat filename              - When ls command is sucessful then cat command is executed
+    || -- ls || cat filename              - When ls is failed then cat command is executed
+    |  -- cat filename | grep string      - Output of cat command is Input to grep command               
+
+
+Administation
+    User Management
+        - Privilge
+            sudo        - Execute commands as ROOT user
+            id          - Shows the user ID, goup ID Details
+        - User
+            User must be part of a single group
+            sudo useradd -g group1 user1        - Add user user1 to gruop group1
+            id user                             - Shows user Details
+            sudo useradd user1                  - Add user1 to newly created group group1
+            sudo usermod -aG group1             - Added to Supplimentary group1
+            sudo usermod -g group1              - Added to Primary group1
+            sudo passwd username                - Set the password to username
+            su - username                       - Switch User
+            logout                              - Logout User
+            sudo visudo
+            sudo gpasswd -d username usergroup  - Delete user form group
+            /etc/sudoers.d/google_sudoers       
+
+        - Group
+            groupadd group  - Adding the Group
+            getent group    - List the Groups
+            cat /etc/group  - List of Group
+            
+    Package Management
+        - Package Installation
+            RPM         - Redhat Package Manager
+            yum         - Uses the rpm in background
+            yum list    - List the packages
+            @base       - Package is Insatlled
+            /etc/yum.repos.d/
+            yum list insatlled
+            yum list available
+            yum check-Update
+            sudo yum update packagename
+            sudo yum udpate -y 
+            sudo yum remove packagename -y
+            sudo yum provides "*bin/createrepo" 
+        - Binary Installation
+        - Source Installation
+
+    Sevice Management
+        systemctl -- centos 7
+            systemctl list-units -t services        - List services
+            systemctl status httpd
+            systemctl stop httpd
+            systemctl restart httpd
+            sudo reboot
+            systemctl enable httpd                  - Enable after reboot
+            /etc/systemd/system/multi-user.target.wants
+            systemctl list-unit-files
+        service -- centos 6
+
+
+########################################## Feb 27  ##########################################
+
+    Process Management
+        ps
+            --> Running Processes of session
+        ps -e
+            --> List of all Processes
+        ps -e | wc -l   
+            --> No of Processes
+        top
+            --> All the Processes, Top Usage , Task Manager
+        pts/0
+            --> Session name
+            --> pseudo terminal slave
+        ps -ef
+            --> PID 1 for System Processes
+            --> PID 2 for Kernel Processes
+        ps -ef | grep 
+            --> Search using Grep Command help
+        kill   
+            --> Stop the process
+        kill PID    
+            --> Kill the process with PID
+        kill -9
+            --> Force full kill
+        pkill 
+            --> Kill the process with it's name
+        Ctrl + C
+            --> Terminate the process
+        Ctrl + Z
+            --> Stop the process
+        sleep 100 &
+            --> Run the process in background
+        jobs 
+            --> All Stoped Processes
+        fg %1
+            --> Bring the stopped process
+        
+
+    File Management
+    
+    Owenerships    
+        sudo chown username filename
+            --> Change the owner of file
+        sudo chgrp groupname filename
+            --> Change the group of file
+        sudo chown username:groupname filename
+            --> Change the owner and group at time
+        sudo chown username:groupname directory_name -R
+            --> Change the owner & Group recursively for directory
+    
+    Permissions
+    -rwxrwxrwx. 1 user group size Mar 19 14:46 filename
+        Type of files
+            ls -l
+            - : regular file
+            d : directory
+            c : character device file
+            b : block device file
+            s : local socket file
+            p : named pipe
+            l : symbolic link
+    Read/Write/Execute
+        Owner permissions (u)
+        Group permissions (g)
+        Other permissions (o)
+    chmod u+x filename
+        --> Add Execute Permissions to Owner
+    chmod g+rm
+        --> Add Read/Write Permissions to Group
+    chmod o-rw
+        --> Remove Read/Write Permissions from Others
+    chmod ugo+rwx
+        --> Add Read/Write/Execute Permissions to Owner/Group/Others
+
+
+
+
+    Network Management
+    Disk Management
